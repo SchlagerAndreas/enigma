@@ -9,6 +9,7 @@
         <title>Enigma</title>
 	</head>
 	<body>
+        <h3 id="test">TEST</h3>
 	   <table id="settings">
            <tr>
                <td>
@@ -17,79 +18,77 @@
                <td>
                    <p>Position</p>
                </td>
-               <td>
+               <!-- <td>
                    <p>Rotation</p>
-               </td>
+               </td> -->
            </tr>
            <tr>
                <td>
-                    <select id="rotator">
-                        <option onclick="R1.setRotator(1)">I</option>
-                        <option onclick="R1.setRotator(2)">II</option>
-                        <option onclick="R1.setRotator(3)">III</option>
-                        <option onclick="R1.setRotator(4)">IV</option>
-                        <option onclick="R1.setRotator(5)">V</option>
+                    <select id="rotator1">
+                        <option value='1'>I</option>
+                        <option value='2'>II</option>
+                        <option value='3'>III</option>
+                        <option value='4'>IV</option>
+                        <option value='5'>V</option>
                     </select>
                </td>
                <td>
-                    <button onclick="R1.incPos('rotator1pos')">+</button>
-                    <p id="rotator1pos">A 1</p>
-                    <button onclick="R1.decPos('rotator1pos')">-</button>
+                    <button id="rotatorIpos1">+</button>
+                    <p id="rotatorPos1">A 1</p>
+                    <button id="rotatorDpos1">-</button>
                </td>
-               <td>
-                    <button onclick="R2.incRot('rotator1rot')">+</button>
-                    <p id="rotator1rot">A 1</p>
-                    <button onclick="R1.decRot('rotator1rot')">-</button>
-                </td>
+               <!-- <td>
+                    <button id="rotatorIrot1">+</button>
+                    <p id="rotatorRot1">A 1</p>
+                    <button id="rotatorDrot1">-</button>
+                </td> -->
             </tr>
             <tr>
                 <td>
-                    <select id="rotator">
-                        <option onclick="R2.setRotator(1)">I</option>
-                        <option onclick="R2.setRotator(2)">II</option>
-                        <option onclick="R2.setRotator(3)">III</option>
-                        <option onclick="R2.setRotator(4)">IV</option>
-                        <option onclick="R2.setRotator(5)">V</option>
+                    <select id="rotator2">
+                            <option value='1'>I</option>
+                            <option value='2'>II</option>
+                            <option value='3'>III</option>
+                            <option value='4'>IV</option>
+                            <option value='5'>V</option>
                     </select>
                 </td>
-                <td>
-                    <button onclick="R2.incPos('rotator2pos')">+</button>
-                    <p id="rotator2pos">A 1</p>
-                    <button onclick="R2.decPos('rotator2pos')">-</button>
-                </td>
-                <td>
-                    <button onclick="R2.incRot('rotator2rot')">+</button>
-                    <p id="rotator2rot">A 1</p>
-                    <button onclick="R2.decRot('rotator2rot')">-</button>
-                    </td>
-                </tr>
+                    <td>
+                        <button id="rotatorIpos2">+</button>
+                        <p id="rotatorPos2">A 1</p>
+                        <button id="rotatorDpos2">-</button>
+                   </td>
+                   <!-- <td>
+                        <button id="rotatorIrot2">+</button>
+                        <p id="rotatorRot2">A 1</p>
+                        <button id="rotatorDrot2">-</button>
+                    </td> -->
                 <tr>
                     <td>
-                        <select id="rotator">
-                            <option onclick="R3.setRotator(1)">I</option>
-                            <option onclick="R3.setRotator(2)">II</option>
-                            <option onclick="R3.setRotator(3)">III</option>
-                            <option onclick="R3.setRotator(4)">IV</option>
-                            <option onclick="R3.setRotator(5)">V</option>
+                        <select id="rotator3">
+                                <option value='1'>I</option>
+                                <option value='2'>II</option>
+                                <option value='3'>III</option>
+                                <option value='4'>IV</option>
+                                <option value='5'>V</option>
                         </select>
                     </td>
                     <td>
-                        <button onclick="R3.incPos('rotator3pos')">+</button>
-                        <p id="rotator3pos">A 1</p>
-                        <button onclick="R3.decPos('rotator3pos')">-</button>
-                    </td>
-                    <td>
-                        <button onclick="R3.incRot('rotator3rot')">+</button>
-                        <p id="rotator3rot">A 1</p>
-                        <button onclick="R3.decRot('rotator3rot')">-</button>
-                    </td>
+                            <button id="rotatorIpos3">+</button>
+                            <p id="rotatorPos3">A 1</p>
+                            <button id="rotatorDpos3">-</button>
+                       </td>
+                       <!-- <td>
+                            <button id="rotatorIrot3">+</button>
+                            <p id="rotatorRot3">A 1</p>
+                            <button id="rotatorDrot3">-</button>
+                    </td> -->
                 </tr>
         </table>
        <div id="input">
-
+            <button onclick="encrypt(1)">Test</button>
        </div>
        <div id="output">
-
        </div>
     </body>
 </html>
