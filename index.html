@@ -9,7 +9,7 @@
         <title>Enigma</title>
 	</head>
 	<body>
-        <h3 id="test">TEST</h3>
+        <h3 id="test"></h3>
 	   <table id="settings">
            <tr>
                <td>
@@ -18,9 +18,15 @@
                <td>
                    <p>Position</p>
                </td>
-               <!-- <td>
-                   <p>Rotation</p>
-               </td> -->
+           </tr>
+           <tr>
+               <td>
+                   <select id="UKW">
+                       <option value='1'>UKW-A</option>
+                       <option value='2'>UKW-B</option>
+                       <option value='3'>UKW-C</option>
+                   </select>
+               </td>
            </tr>
            <tr>
                <td>
@@ -37,11 +43,6 @@
                     <p id="rotatorPos1">A 1</p>
                     <button id="rotatorDpos1">-</button>
                </td>
-               <!-- <td>
-                    <button id="rotatorIrot1">+</button>
-                    <p id="rotatorRot1">A 1</p>
-                    <button id="rotatorDrot1">-</button>
-                </td> -->
             </tr>
             <tr>
                 <td>
@@ -58,11 +59,6 @@
                         <p id="rotatorPos2">A 1</p>
                         <button id="rotatorDpos2">-</button>
                    </td>
-                   <!-- <td>
-                        <button id="rotatorIrot2">+</button>
-                        <p id="rotatorRot2">A 1</p>
-                        <button id="rotatorDrot2">-</button>
-                    </td> -->
                 <tr>
                     <td>
                         <select id="rotator3">
@@ -78,15 +74,10 @@
                             <p id="rotatorPos3">A 1</p>
                             <button id="rotatorDpos3">-</button>
                        </td>
-                       <!-- <td>
-                            <button id="rotatorIrot3">+</button>
-                            <p id="rotatorRot3">A 1</p>
-                            <button id="rotatorDrot3">-</button>
-                    </td> -->
                 </tr>
         </table>
        <div id="input">
-            <button onclick="encrypt(1)">Test</button>
+            <button id="testBtn">Test</button>
        </div>
        <div id="output">
        </div>
