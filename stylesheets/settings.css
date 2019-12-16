@@ -28,6 +28,7 @@ div#enigma{
     justify-content: space-between;
     align-items: center ;
     margin: 0 auto;
+    color: #523614;
 }
 
 div#settings{
@@ -49,7 +50,6 @@ div#heading{
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
-    color: #523614;
 }
 
 div#extras{
@@ -62,6 +62,7 @@ div#plugboard{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    color: #523614;
 }
 
 div.rotatorSettings{
@@ -131,6 +132,18 @@ div#plugboardInput{
     box-shadow: 0 4px grey;
     width: 340px;
     height: 18px;
+}
+
+div#errorField{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 8px 8px;
+    padding: 0 0;
+    height: 110px;
+    overflow-y: auto;
+    scrollbar-color: lightsteelblue #786042;
 }
 
 div#plugboard > p{
@@ -213,4 +226,16 @@ input.plugboard{
     border: none;
     margin: 0 0;
     padding: 1px 1px;
+}
+
+p#errorHeading{
+    font-size: 16px;
+    margin: 4px 0;
+    padding: 0 0;
+}
+
+p.error{
+    font-size: 12px;
+    margin: 4px 0;
+    padding: 0 0;
 }

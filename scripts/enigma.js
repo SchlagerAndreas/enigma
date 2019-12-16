@@ -126,7 +126,7 @@ class Enigma{
             })
         }
         document.body.addEventListener("keyup",function(e){
-            if(e.key.match(/^[a-zA-Z]+$/) && !that.inputBlocked){
+            if(e.key.match(/^[a-zA-Z]$/) && !that.inputBlocked){
                 that.handleInput(e.key);
             }
         });
@@ -284,6 +284,9 @@ class Enigma{
      */
     goThroughPlugboard(input){
         return this.plugboard[input-1] != 0 ? this.plugboard[input-1] : input;
+    }
+    setPlugboard(input){
+        this.plugboard[input[0]];
     }
 }
 
