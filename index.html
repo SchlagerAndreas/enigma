@@ -3,83 +3,103 @@
 	<head>
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel = "stylesheet" type = "text/css" href = "settings.css">
+        <link rel = "stylesheet" type = "text/css" href = "./stylesheets/settings.css">
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <script src="enigma.js"></script>
+        <script src="./scripts/enigma.js"></script>
+        <script src="./scripts/text.js"></script>
+        <script src="./scripts/plugboard.js"></script>
+        <script src="./scripts/main.js"></script>
         <title>Enigma</title>
 	</head>
 	<body>
-        <h3 id="test"></h3>
-	   <table id="settings">
-           <tr>
-               <td>
-                   <p>Rotor</p>
-               </td>
-               <td>
-                   <p>Position</p>
-               </td>
-           </tr>
-           <tr>
-               <td>
-                   <select id="UKW">
-                       <option value='1'>UKW-A</option>
-                       <option value='2'>UKW-B</option>
-                       <option value='3'>UKW-C</option>
-                   </select>
-               </td>
-           </tr>
-           <tr>
-               <td>
-                    <select id="rotator1">
-                        <option value='1'>I</option>
-                        <option value='2'>II</option>
-                        <option value='3'>III</option>
-                        <option value='4'>IV</option>
-                        <option value='5'>V</option>
-                    </select>
-               </td>
-               <td>
-                    <button id="rotatorIpos1">+</button>
-                    <p id="rotatorPos1">A 1</p>
-                    <button id="rotatorDpos1">-</button>
-               </td>
-            </tr>
-            <tr>
-                <td>
-                    <select id="rotator2">
-                            <option value='1'>I</option>
-                            <option value='2'>II</option>
-                            <option value='3'>III</option>
-                            <option value='4'>IV</option>
-                            <option value='5'>V</option>
-                    </select>
-                </td>
-                    <td>
-                        <button id="rotatorIpos2">+</button>
-                        <p id="rotatorPos2">A 1</p>
-                        <button id="rotatorDpos2">-</button>
-                   </td>
-                <tr>
-                    <td>
-                        <select id="rotator3">
-                                <option value='1'>I</option>
-                                <option value='2'>II</option>
-                                <option value='3'>III</option>
-                                <option value='4'>IV</option>
-                                <option value='5'>V</option>
-                        </select>
-                    </td>
-                    <td>
-                            <button id="rotatorIpos3">+</button>
-                            <p id="rotatorPos3">A 1</p>
-                            <button id="rotatorDpos3">-</button>
-                       </td>
-                </tr>
-        </table>
-       <div id="input">
-            <button id="testBtn">Test</button>
-       </div>
-       <div id="output">
-       </div>
+        <div id = "body">
+            <h1>The Enigma machine</h1>
+            <div id ="enigma">
+                <div id="settings">
+                    <div id="heading">
+                        <p>Rotor</p>
+                        <p>Position</p>
+                    </div>
+                    <div id="input">
+                        <div class="rotatorSettings">
+                            <div class="customSelect">
+                                <select id="rotator1">
+                                    <option value='1'>I</option>
+                                    <option value='2'>II</option>
+                                    <option value='3'>III</option>
+                                    <option value='4'>IV</option>
+                                    <option value='5'>V</option>
+                                </select>
+                            </div>
+                            <button id="rotatorIpos1" class="posButton">+</button>
+                            <p id="rotatorPos1" class ="posText">A 1</p>
+                            <button id="rotatorDpos1" class="posButton">-</button>
+                        </div>
+                        <div class="rotatorSettings">
+                            <div class="customSelect">
+                                <select id="rotator2">
+                                    <option value='1'>I</option>
+                                        <option value='2' selected = "selected">II</option>
+                                        <option value='3'>III</option>
+                                        <option value='4'>IV</option>
+                                        <option value='5'>V</option>
+                                </select>
+                            </div>
+                            <button id="rotatorIpos2" class="posButton">+</button>
+                            <p id="rotatorPos2" class ="posText">A 1</p>
+                            <button id="rotatorDpos2" class="posButton">-</button>
+                        </div>
+                        <div class="rotatorSettings">
+                            <div class="customSelect">
+                                <select id="rotator3">
+                                    <option value='1'>I</option>
+                                    <option value='2'>II</option>
+                                    <option value='3' selected = "selected">III</option>
+                                    <option value='4'>IV</option>
+                                    <option value='5'>V</option>
+                                </select>
+                            </div>
+                            <button id="rotatorIpos3" class="posButton">+</button>
+                            <p id="rotatorPos3" class ="posText">A 1</p>
+                            <button id="rotatorDpos3" class="posButton">-</button>
+                        </div>
+                        <div id="extras">
+                            <div class="customSelect">
+                                <select id="UKW">
+                                    <option value='1'>UKW-A</option>
+                                    <option value='2'>UKW-B</option>
+                                    <option value='3'>UKW-C</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="output">
+                    <canvas width = "320px" height = "110px" id ="outputLights"></canvas>
+                </div>
+            </div>
+            <div id="plugboard">
+                <p>Plugboard</p>
+                <div id ="plugboardInput">
+                    <input class="plugboard" id="inPlugBrd1">
+                    <input class="plugboard" id="inPlugBrd2">
+                    <input class="plugboard" id="inPlugBrd3">
+                    <input class="plugboard" id="inPlugBrd4">
+                    <input class="plugboard" id="inPlugBrd5">
+                    <input class="plugboard" id="inPlugBrd6">
+                    <input class="plugboard" id="inPlugBrd7">
+                    <input class="plugboard" id="inPlugBrd8">
+                    <input class="plugboard" id="inPlugBrd9">
+                    <input class="plugboard" id="inPlugBrd10">
+                </div>
+            </div>
+            <div class="information">
+                <h2 class="question" id="q0" >What is the enigma? </h2>
+                <p class="answer" id="answer0" data-expanded="false">The Enigma machine is an encryption device developed and used in the 30s and 40s of the 20th century to protect commercial, diplomatic and military communication. It was employed extensively by Nazi Germany during the secound world war, in all branches of the German military. </p>
+                <h2 class="question" id="q1">How does the Enigma Work? </h2>
+                <p class="answer" id="answer1" data-expanded="false">I dont know!</p>
+            </div>
+            <footer>Schlager Andreas</footer>
+        </div>
     </body>
 </html>
