@@ -4,6 +4,7 @@
         <meta charset = "UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel = "stylesheet" type = "text/css" href = "./stylesheets/settings.css">
+        <link rel = "stylesheet" type = "text/css" href = "./stylesheets/switch.css">
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
         <script src="./scripts/enigma.js"></script>
         <script src="./scripts/text.js"></script>
@@ -15,6 +16,7 @@
         <div id = "body">
             <h1>The Enigma machine</h1>
             <div id ="enigma">
+                <div id="help"></div>
                 <div id="settings">
                     <div id="heading">
                         <p>Rotor</p>
@@ -71,6 +73,10 @@
                                     <option value='3'>UKW-C</option>
                                 </select>
                             </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                         </div>
                     </div>
                 </div>
@@ -80,6 +86,9 @@
                 <div id="errorField">
                     <p id="errorHeading">Errors:</p>
                     <p class="error">-Error 1: same rotor used</p>
+                </div>
+                <div id="helpButton">
+                    <button id="helpBtn">?</button>
                 </div>
             </div>
             <div id="plugboard">
@@ -97,13 +106,27 @@
                     <input class="plugboard" id="inPlugBrd10">
                 </div>
             </div>
+            <div id="text">
+                <div id="inputText">
+                    <button id="btnEncrypt">Encrypt</button>
+                </div>
+                <div id="outputText">
+
+                </div>
+            </div>
             <div class="information">
                 <h2 class="question" id="q0" >What is the enigma? </h2>
                 <p class="answer" id="answer0" data-expanded="false">The Enigma machine is an encryption device developed and used in the 30s and 40s of the 20th century to protect commercial, diplomatic and military communication. It was employed extensively by Nazi Germany during the secound world war, in all branches of the German military. </p>
                 <h2 class="question" id="q1">How does the Enigma Work? </h2>
                 <p class="answer" id="answer1" data-expanded="false">I dont know!</p>
             </div>
-            <footer>Schlager Andreas</footer>
+            <div id="footer">
+                <footer>Schlager Andreas</footer>
+                <div id="underfooter">
+                    <a id="underfooter">GITHub</a>
+                    <footer id="underfooter">v0.0.0.2</footer>
+                </div>
+            </div>
         </div>
     </body>
 </html>

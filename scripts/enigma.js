@@ -112,24 +112,33 @@ class Enigma{
         this.out = new Output();
         this.UKW = this.UKWConf[0];
         this.inputBlocked = false;
-        var tmp = document.getElementById("UKW");
         var that = this;
+        this.tempalteELKeyboard = function(e){if(e.key.match(/^[a-zA-Z]$/) && !that.inputBlocked){that.handleInput(e.key);}};
+        var tmp = document.getElementById("UKW");
         if(tmp != null){
             tmp.addEventListener("change", function(e){
                 that.setupUKW(e.target.value);
-            })
+            });
         }
         tmp = document.getElementById("testBtn");
         if(tmp != null){
             tmp.addEventListener("click", function(){
                 that.encrypt(1);
-            })
+            });
         }
-        document.body.addEventListener("keyup",function(e){
-            if(e.key.match(/^[a-zA-Z]$/) && !that.inputBlocked){
-                that.handleInput(e.key);
-            }
-        });
+        this.setKeyboardOn();
+    }
+    /**
+     * activates the keyboard input
+     */
+    setKeyboardOn(){
+        document.body.addEventListener("keyup",this.tempalteELKeyboard);
+    }
+    /**
+     * deactivates the keyboard input
+     */
+    setKeyboardOff(){
+        document.body.removeEventListener("keyup",this.tempalteELKeyboard);
     }
     /**
      * takes a number as input wich will tertemite wich UKW will be used
@@ -149,6 +158,7 @@ class Enigma{
         console.log(Array.from(this.R1.wheel));
         console.log(Array.from(this.R2.wheel));
         console.log(Array.from(this.R3.wheel));
+        console.log(Array.from(this.plugboard));
         console.log(this.UKW);
         console.log("From: " + String(tmp) + " - " + String.fromCharCode(tmp+64));
         console.log("Array Pos R1: " + String((tmp + this.R1.position -2)));
@@ -285,8 +295,17 @@ class Enigma{
     goThroughPlugboard(input){
         return this.plugboard[input-1] != 0 ? this.plugboard[input-1] : input;
     }
+    /**
+     * gets two numbers and sets the plugboard array
+     * @param {String} input contains a string wich corospant to the two letters that are connected within the plugboard
+     */
     setPlugboard(input){
-        this.plugboard[input[0]];
+        console.log("Plugboard:");
+        var tmp1 = input.charCodeAt(0) > 90 ? input.charCodeAt(0) - 96 : input.charCodeAt(0) - 64;
+        var tmp2 = input.charCodeAt(1) > 90 ? input.charCodeAt(1) - 96 : input.charCodeAt(1) - 64;
+        this.plugboard[tmp1-1] = tmp2;
+        this.plugboard[tmp2-1] = tmp1;
+        console.log(this.plugboard);
     }
 }
 
@@ -304,6 +323,9 @@ class Output{
         this.ctx = document.getElementById("outputLights").getContext("2d");
         this.drawOutputLights();
     }
+    /**
+     * Draws all lights of into the canvas
+     */
     drawOutputLights(){
         for(var j = 0; j < 9; j++){
             this.ctx.fillStyle = "#FFFFFF";
@@ -341,6 +363,10 @@ class Output{
         }
         
     }
+    /**
+     * redraw the complete canvas but set on light on (fill the circle yellow)
+     * @param {Number} letter wich of the lights turn on
+     */
     setLightOn(letter){
         for(var j = 0; j < 9; j++){
             if(letter == (j+1)){

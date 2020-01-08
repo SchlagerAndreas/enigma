@@ -13,6 +13,9 @@ class Text{
         }
 
     };
+    /**
+     * Hide all the information text
+     */
     hideAllText(){
         var tmp;
         for(var i = 0; i < this.textCnt; i++){
@@ -20,6 +23,10 @@ class Text{
             document.getElementById(tmp).style.display = "none";
         }
     };
+    /**
+     * shows or hides one of the information texts
+     * @param {String} id wich text should be shown/hidden
+     */
     hideShowText(id){
         var tmp1 = document.getElementById(id);
         if(tmp1.dataset.expanded == "false"){

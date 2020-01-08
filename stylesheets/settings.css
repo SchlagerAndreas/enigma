@@ -39,10 +39,19 @@ div#settings{
     margin: 8px 8px;
 }
 
+div#helpButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 200px;
+}
+
 div#input{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 }
 
 div#heading{
@@ -50,12 +59,35 @@ div#heading{
     flex-direction: row;
     justify-content: space-between;
     text-align: center;
+    width: 100%;
 }
 
 div#extras{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 0 0;
+}
+
+div#footer{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 4px 0;
+    background-color: rgb(136, 136, 136);
+}
+
+div#underfooter{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 4px 0;
+    background-color: rgb(136, 136, 136);
 }
 
 div#plugboard{
@@ -213,9 +245,17 @@ p.answer{
 
 footer{
     width: 100%;
-    text-align: center;
-    padding: 4px 0;
+    padding: 0 0;
+    margin: 0 0;
+     font-size: 18px;
     background-color: rgb(136, 136, 136);
+}
+
+#underfooter{
+    width: 100%;
+    font-size: 12px;
+    padding: 0 0;
+    margin: 0 0;
 }
 
 input.plugboard{
@@ -238,4 +278,31 @@ p.error{
     font-size: 12px;
     margin: 4px 0;
     padding: 0 0;
+}
+
+button#btnEncrypt{
+    width: 80px;
+    height: 24px;
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: lightsteelblue;
+    background-color: #786042;
+    margin: 4px 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px grey;
+}
+
+button#btnEncrypt:hover{
+    background-color: #523614;
+    box-shadow: 0 4px black;
+}
+
+button#btnEncrypt:active{
+    transform: translateY(2px);
 }
