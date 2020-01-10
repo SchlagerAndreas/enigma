@@ -6,6 +6,7 @@ class Plugboard{
         this.tmp;
         this.templateELFocus = function(){this.blur();};
         this.templateELInput = function(){that.handleInput(that.focusOn,this.value);};
+        this.templateELBackspace = function(e){if(e.key == Backspace){that.gotBackspace(that.focusOn);}};
         for(var i = 2; i <= 10; i++){
             that.noFocus(i);
         }
@@ -37,6 +38,7 @@ class Plugboard{
             tmp.removeEventListener("focus",this.templateELFocus);
             this.focusOn = id;
             tmp.addEventListener("input",this.templateELInput);
+            tmp.addEventListener("keyup", this.templateELBackspace);
             tmp.focus();
         }
     }
@@ -48,6 +50,7 @@ class Plugboard{
         var tmp = document.getElementById("inPlugBrd" + id);
         if(tmp != null){
             tmp.removeEventListener("input",this.templateELInput);
+            tmp.removeEventListener("keyup", this.templateELBackspace);
             tmp.addEventListener("focus",this.templateELFocus);
             tmp.blur();
         }
@@ -63,7 +66,7 @@ class Plugboard{
                 if(input[0].match(/^[a-zA-Z]$/) && input[1].match(/^[a-zA-Z]$/)){
                     if(this.checkPlugboard(input) == false){
                         console.log("Plugboard Send");
-                        this.enigma.setPlugboard(input);
+                        this.enigma.setPlugboard(input,true);
                         if(id != 10){
                             this.noFocus(id);
                             this.setFocus(id+1);
@@ -93,17 +96,6 @@ class Plugboard{
                 //error same letter in plugboard
             }
         }
-        else if(input == "" && id != 1){
-            var tmp = document.getElementById("inPlugBrd" + (id-1));
-            if(tmp != null){
-                tmp.value = "";
-            }
-            this.noFocus(id);
-            this.setFocus(id-1);
-        }
-        else if(id == 10){
-            
-        }
     }
     /**
      * checks if one of the letter is used twice within the plugboard, if a letter is used twice it returns true else false
@@ -120,5 +112,24 @@ class Plugboard{
            } 
         }
         return false;
+    }
+    /**
+     * 
+     * @param {Number} id 
+     */
+    gotBackspace(id){
+        if(id != 1){
+            var tmp = document.getElementById("inPlugBrd" + id);
+            if(tmp != null){
+                tmp.value = "";
+            }
+            this.enigma.setPlugboard(tmp.value,false);
+            this.noFocus(id);
+            this.setFocus(id-1);
+            var tmp = document.getElementById("inPlugBrd" + (id-1));
+            if(tmp != null){
+                tmp.value.pop();
+            }
+        }
     }
 }

@@ -298,14 +298,19 @@ class Enigma{
     /**
      * gets two numbers and sets the plugboard array
      * @param {String} input contains a string wich corospant to the two letters that are connected within the plugboard
+     * @param {Bool} write 
      */
-    setPlugboard(input){
-        console.log("Plugboard:");
+    setPlugboard(input,write){
         var tmp1 = input.charCodeAt(0) > 90 ? input.charCodeAt(0) - 96 : input.charCodeAt(0) - 64;
         var tmp2 = input.charCodeAt(1) > 90 ? input.charCodeAt(1) - 96 : input.charCodeAt(1) - 64;
-        this.plugboard[tmp1-1] = tmp2;
-        this.plugboard[tmp2-1] = tmp1;
-        console.log(this.plugboard);
+        if(write){
+            this.plugboard[tmp1-1] = tmp2;
+            this.plugboard[tmp2-1] = tmp1;
+        }
+        else{
+            this.plugboard[tmp1-1] = 0;
+            this.plugboard[tmp2-1] = 0;
+        }
     }
 }
 

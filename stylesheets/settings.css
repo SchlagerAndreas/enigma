@@ -208,6 +208,32 @@ button.posButton:active{
     transform: translateY(2px);
 }
 
+button#helpBtn{
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    padding: 4px 4px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: lightsteelblue;
+    background-color: #786042;
+    margin: 4px 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px grey;
+}
+
+button#helpBtn:hover{
+    background-color: #523614;
+    box-shadow: 0 4px black;
+}
+button#helpBtn:active{
+    transform: translateY(2px);
+}
+
 div.information{
     display: flex;
     flex-direction: column;
