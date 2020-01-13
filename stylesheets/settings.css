@@ -81,7 +81,7 @@ div#footer{
     background-color: rgb(136, 136, 136);
 }
 
-div#underfooter{
+div.links{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -277,7 +277,7 @@ footer{
     background-color: rgb(136, 136, 136);
 }
 
-#underfooter{
+.underfooter{
     width: 100%;
     font-size: 12px;
     padding: 0 0;

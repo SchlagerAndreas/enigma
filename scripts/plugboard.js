@@ -6,7 +6,7 @@ class Plugboard{
         this.tmp;
         this.templateELFocus = function(){this.blur();};
         this.templateELInput = function(){that.handleInput(that.focusOn,this.value);};
-        this.templateELBackspace = function(e){if(e.key == Backspace){that.gotBackspace(that.focusOn);}};
+        this.templateELBackspace = function(e){if(e.key == "Backspace"){that.gotBackspace(that.focusOn);}};
         for(var i = 2; i <= 10; i++){
             that.noFocus(i);
         }
