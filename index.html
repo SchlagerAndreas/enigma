@@ -6,9 +6,15 @@
         <link rel = "stylesheet" type = "text/css" href = "./stylesheets/settings.css">
         <link rel = "stylesheet" type = "text/css" href = "./stylesheets/switch.css">
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <script src="./scripts/enigma.js"></script>
-        <script src="./scripts/text.js"></script>
+        <script src="./scripts/error.js"></script>
+        <script src="./scripts/help.js"></script>
+        <script src="./scripts/info.js"></script>
+        <script src="./scripts/input.js"></script>
+        <script src="./scripts/lights.js"></script>
         <script src="./scripts/plugboard.js"></script>
+        <script src="./scripts/rotator.js"></script>
+        <script src="./scripts/ukw.js"></script>
+        <script src="./scripts/enigma.js"></script>
         <script src="./scripts/main.js"></script>
         <title>Enigma</title>
 	</head>
@@ -84,8 +90,8 @@
                     <canvas width = "320px" height = "110px" id ="outputLights"></canvas>
                 </div>
                 <div id="errorField">
-                    <p id="errorHeading">Errors:</p>
-                    <p class="error">-Error 1: same rotor used</p>
+                    <p id="errorHeading"></p>
+                    <p class="error"></p>
                 </div>
                 <div id="helpButton">
                     <button id="helpBtn">?</button>
@@ -125,7 +131,7 @@
                 <div class="links">
                     <a class="underfooter" href="https://github.com/SchlagerAndreas">GITHub</a>
                     <a class="underfooter" href="https://schlagerandreas.github.io/#">Other Projects</a>
-                    <footer class="underfooter">v0.0.0.3</footer>
+                    <footer class="underfooter">v0.0.1</footer>
                 </div>
             </div>
         </div>

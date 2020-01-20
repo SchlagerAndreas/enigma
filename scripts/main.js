@@ -1,5 +1,5 @@
 window.onload = function(){
-    enigma = new Enigma();
-    text = new Text();
-    plugboard = new Plugboard(enigma);
+    var enigma = new Enigma();
+    var infoText = new Info();
+    var helpText = new HelpSite();
 }

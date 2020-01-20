@@ -1,105 +1,71 @@
 class Plugboard{
-    constructor(enigmaClass){
+    constructor(inputClass){
+        this.plugboard = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         this.focusOn = 1;
         var that = this;
-        this.enigma = enigmaClass;
-        this.tmp;
-        this.templateELFocus = function(){this.blur();};
-        this.templateELInput = function(){that.handleInput(that.focusOn,this.value);};
-        this.templateELBackspace = function(e){if(e.key == "Backspace"){that.gotBackspace(that.focusOn);}};
-        for(var i = 2; i <= 10; i++){
-            that.noFocus(i);
-        }
-        that.setFocus(1);
-        this.antiInputEvent();
+        this.templELBlur = function(){this.blur();};
+        this.templELInputOff = function(){inputClass.turnInputOnOff(true)};
+        this.templELInputOn = function(){inputClass.turnInputOnOff(false)};
+        this.templELInput = function(){that.handleInput(this.value,false);};
+        this.templELBackspace = function(e){if(e.key == "Backspace"){that.handleInput(this.value,true);e.preventDefault();return false}};
+        this.setupInputs();
     };
-    antiInputEvent(){
-        var tmp;
-        var that = this;
+    setupInputs(){
         for(var i = 1; i <= 10;i++){
-            tmp = document.getElementById("inPlugBrd" + i);
-            if(tmp != null){
-                tmp.addEventListener("focus",function(){
-                    that.enigma.setKeyboardOff();
-                })
-                tmp.addEventListener("blur",function(){
-                    that.enigma.setKeyboardOn();
-                })
-            }
+            this.inputOffonFocus(i); 
+        }
+        for(var i = 2; i <= 10;i++){
+            this.diableFocus(i);
+        }
+        this.setFocus(1);
+
+    }
+    addToPlugbrd(input){
+       this.plugboard[this.convertInput(input[0])-1] = this.convertInput(input[1])
+       this.plugboard[this.convertInput(input[1])-1] = this.convertInput(input[0])
+       console.log(this.plugboard);
+    }
+    rmvFromPlugbrd(input){
+        this.plugboard[this.convertInput(input[0])-1] = 0;
+        this.plugboard[this.convertInput(input[1])-1] = 0;
+        console.log(this.plugboard);
+
+    }
+    goThroughPlugboard(input){
+        return this.plugboard[input - 1] != 0 ? this.plugboard[input - 1] : input;
+    }
+    diableFocus(id){
+        var tmp = document.getElementById("inPlugBrd" + id);
+        if(tmp != null){
+            tmp.addEventListener("focus",this.templELBlur);
+            tmp.removeEventListener("input", this.templELInput);
+            tmp.removeEventListener("keyup", this.templELBackspace);
+            tmp.blur();
         }
     }
-    /**
-     * removes anti-focus event and adds the input event
-     * @param {Number} id   wich input field of the plugboard is used 
-     */
     setFocus(id){
         var tmp = document.getElementById("inPlugBrd" + id);
         if(tmp != null){
-            tmp.removeEventListener("focus",this.templateELFocus);
-            this.focusOn = id;
-            tmp.addEventListener("input",this.templateELInput);
-            tmp.addEventListener("keyup", this.templateELBackspace);
+            tmp.removeEventListener("focus",this.templELBlur);
+            tmp.addEventListener("input", this.templELInput);
+            tmp.addEventListener("keydown", this.templELBackspace);
             tmp.focus();
         }
     }
     /**
-     * removes the input event and adds the anti-focus event
-     * @param {Number} id wich input field of the plugboard is used
+     * deactivates the input if plugboard is focused, to prevent to get a keyboard input when user writes in plugboard
+     * @param {Number} id 
      */
-    noFocus(id){
+    inputOffonFocus(id){
         var tmp = document.getElementById("inPlugBrd" + id);
         if(tmp != null){
-            tmp.removeEventListener("input",this.templateELInput);
-            tmp.removeEventListener("keyup", this.templateELBackspace);
-            tmp.addEventListener("focus",this.templateELFocus);
-            tmp.blur();
+            tmp.addEventListener("focus",this.templELInputOff); //deactivates input if focused
+            tmp.addEventListener("blur",this.templELInputOn); //activates input if blured
         }
     }
     /**
-     * gets a inputstring chesck if the parameters are corredct adds this to the plugboard in the enigma class and set the focus to the next field
-     * @param {Number} id wich input of the plugboard is used   
-     * @param {String} input the input string wich contains the text of the input
-     */
-    handleInput(id,input){
-        if(input.length == 2){
-            if(input[0] != input[1]){
-                if(input[0].match(/^[a-zA-Z]$/) && input[1].match(/^[a-zA-Z]$/)){
-                    if(this.checkPlugboard(input) == false){
-                        console.log("Plugboard Send");
-                        this.enigma.setPlugboard(input,true);
-                        if(id != 10){
-                            this.noFocus(id);
-                            this.setFocus(id+1);
-                        }
-                    }
-                    else{
-                        var tmp = document.getElementById("inPlugBrd" + (id));
-                        if(tmp != null){
-                            tmp.value = "";
-                        }
-                        //error not a letter used in plugboard
-                    }
-                }
-                else{
-                    var tmp = document.getElementById("inPlugBrd" + (id));
-                    if(tmp != null){
-                        tmp.value = "";
-                    }
-                    //error not a letter used in plugboard
-                }
-            }
-            else{
-                var tmp = document.getElementById("inPlugBrd" + (id));
-                if(tmp != null){
-                    tmp.value = "";
-                }
-                //error same letter in plugboard
-            }
-        }
-    }
-    /**
-     * checks if one of the letter is used twice within the plugboard, if a letter is used twice it returns true else false
-     * @param {String} input the input wich will be checked 
+     * 
+     * @param {Array} input 
      */
     checkPlugboard(input){
         var tmp;
@@ -115,21 +81,84 @@ class Plugboard{
     }
     /**
      * 
-     * @param {Number} id 
+     * @param {Array} input 
+     * @param {Boolean} backspace 
      */
-    gotBackspace(id){
-        if(id != 1){
-            var tmp = document.getElementById("inPlugBrd" + id);
-            if(tmp != null){
-                tmp.value = "";
+    handleInput(input,backspace){
+        if(backspace){
+            if(this.focusOn != 1){
+                if(input.length == 0){
+                    this.diableFocus(this.focusOn);
+                    this.focusOn--;
+                    this.setFocus(this.focusOn);
+                    tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                    if(tmp != null){
+                        this.rmvFromPlugbrd(tmp.value);
+                        tmp.value = "";
+                    }
+                }
+                else if(this.focusOn == 10){
+                    tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                    if(tmp != null){
+                        this.rmvFromPlugbrd(tmp.value);
+                        tmp.value = "";
+                    }
+                }
             }
-            this.enigma.setPlugboard(tmp.value,false);
-            this.noFocus(id);
-            this.setFocus(id-1);
-            var tmp = document.getElementById("inPlugBrd" + (id-1));
-            if(tmp != null){
-                tmp.value.pop();
+            else{
+                var tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                if(tmp != null){
+                    tmp.value = "";
+                }
             }
         }
+        else if(input.length == 2){
+            if(input[0].match(/^[a-zA-Z]$/) && input[1].match(/^[a-zA-Z]$/)){
+                if(input[0] != input[1]){
+                    if(!this.checkPlugboard(input)){
+                        this.addToPlugbrd(input);
+                        if(this.focusOn != 10){
+                            this.diableFocus(this.focusOn);
+                            this.focusOn++;
+                            this.setFocus(this.focusOn);
+                        }
+                    }
+                    else{
+                        var tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                        if(tmp != null){
+                            tmp.value = "";
+                        }
+                        //error -> same letter in plugboard
+                    }
+                }
+                else{
+                    var tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                    if(tmp != null){
+                        tmp.value = "";
+                    }
+                    //error -> same letter in input
+                }
+            }
+            else{
+                var tmp = document.getElementById("inPlugBrd" + this.focusOn);
+                if(tmp != null){
+                    tmp.value = "";
+                }
+                //error -> not a letter used
+            }   
+        }
+        else if(input.length > 2){
+            var tmp = document.getElementById("inPlugBrd" + this.focusOn);
+            if(tmp != null){
+                var tmp2 = [input[0],input[1]];
+                tmp.value = "";
+                tmp.value = tmp2[0] + tmp2[1];
+            }
+        }
+    }
+    convertInput(input){
+        var tmp = input.charCodeAt();
+        tmp = tmp > 96 ? tmp - 96 : tmp - 64;
+        return tmp; 
     }
 }
