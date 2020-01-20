@@ -39,20 +39,25 @@ class Enigma{
      * @param {Number} input character wich will be encrypt 
      */
     encryptLetter(input){
-        var tmp = input;
-        tmp = this.goThroughRotator(this.R1,tmp,false);
-        tmp = this.goThroughRotator(this.R2,tmp,false);
-        tmp = this.goThroughRotator(this.R3,tmp,false);
-        tmp = this.UKWClass.goThroughUKW(tmp);
-        tmp = this.goThroughRotator(this.R3,tmp,true);
-        tmp = this.goThroughRotator(this.R2,tmp,true);
-        tmp = this.goThroughRotator(this.R1,tmp,true);
-        var output = this.plugboard.goThroughPlugboard(tmp);
-        document.getElementById("rotatorPos1").innerHTML = String.fromCharCode(this.R1.activePosition + 64) + " " + this.R1.activePosition.toString();
-        document.getElementById("rotatorPos2").innerHTML = String.fromCharCode(this.R2.activePosition + 64) + " " + this.R2.activePosition.toString();
-        document.getElementById("rotatorPos3").innerHTML = String.fromCharCode(this.R3.activePosition + 64) + " " + this.R3.activePosition.toString();
-        this.outputLights.setLightOn(output);
-        this.inputClass.inputBlocked = false;
+        if(this.checkRotators){
+            var tmp = input;
+            tmp = this.goThroughRotator(this.R1,tmp,false);
+            tmp = this.goThroughRotator(this.R2,tmp,false);
+            tmp = this.goThroughRotator(this.R3,tmp,false);
+            tmp = this.UKWClass.goThroughUKW(tmp);
+            tmp = this.goThroughRotator(this.R3,tmp,true);
+            tmp = this.goThroughRotator(this.R2,tmp,true);
+            tmp = this.goThroughRotator(this.R1,tmp,true);
+            var output = this.plugboard.goThroughPlugboard(tmp);
+            document.getElementById("rotatorPos1").innerHTML = String.fromCharCode(this.R1.activePosition + 64) + " " + this.R1.activePosition.toString();
+            document.getElementById("rotatorPos2").innerHTML = String.fromCharCode(this.R2.activePosition + 64) + " " + this.R2.activePosition.toString();
+            document.getElementById("rotatorPos3").innerHTML = String.fromCharCode(this.R3.activePosition + 64) + " " + this.R3.activePosition.toString();
+            this.outputLights.setLightOn(output);
+            this.inputClass.inputBlocked = false;
+        }
+        else{
+            //error->same rotors used
+        }
     };
     /**
      * takes a string and encrypts the complete string
@@ -139,21 +144,18 @@ class Enigma{
         return tmp;
     }
 
-    /**
-     * gets two numbers and sets the plugboard array
-     * @param {String} input contains a string wich corospant to the two letters that are connected within the plugboard
-     * @param {Bool} write 
-     */
-    setPlugboard(input,write){
-        var tmp1 = input.charCodeAt(0) > 90 ? input.charCodeAt(0) - 96 : input.charCodeAt(0) - 64;
-        var tmp2 = input.charCodeAt(1) > 90 ? input.charCodeAt(1) - 96 : input.charCodeAt(1) - 64;
-        if(write){
-            this.plugboard[tmp1-1] = tmp2;
-            this.plugboard[tmp2-1] = tmp1;
+    checkRotators(){
+        if(this.R1.wheelNumber == this.R2.wheelNumber){
+            return false;
+        }
+        else if(this.R1.wheelNumber == this.R3.wheelNumber){
+            return false;
+        }
+        else if(this.R2.wheelNumber == this.R3.wheelNumber){
+            return false;
         }
         else{
-            this.plugboard[tmp1-1] = 0;
-            this.plugboard[tmp2-1] = 0;
+            return true;
         }
     }
 }
