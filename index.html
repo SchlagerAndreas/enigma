@@ -8,7 +8,6 @@
         <link rel = "stylesheet" type = "text/css" href = "./stylesheets/help.css">
         <link rel = "stylesheet" type = "text/css" href = "./stylesheets/textEncryption.css">
         <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-        <script src="./scripts/error.js"></script>
         <script src="./scripts/help.js"></script>
         <script src="./scripts/info.js"></script>
         <script src="./scripts/input.js"></script>
@@ -90,10 +89,6 @@
                 <div id="output">
                     <canvas width = "320px" height = "110px" id ="outputLights"></canvas>
                 </div>
-                <div id="errorField">
-                    <p id="errorHeading"></p>
-                    <p class="error"></p>
-                </div>
                 <div id="helpButton">
                     <button id="helpBtn">?</button>
                 </div>
@@ -120,9 +115,15 @@
             </div>
             <div class="information">
                 <h2 class="question" id="q0" >What is the enigma? </h2>
-                <p class="answer" id="answer0" data-expanded="false">The Enigma machine is an encryption device developed and used in the 30s and 40s of the 20th century to protect commercial, diplomatic and military communication. It was employed extensively by Nazi Germany during the secound world war, in all branches of the German military. </p>
+                <div id="answer0" data-expanded="false">
+                    <p class="answer">The Enigma machine is an encryption device developed and used in the 30s and 40s of the 20th century to protect commercial, diplomatic and military communication. It was employed extensively by Nazi Germany during the secound world war, in all branches of the German military. </p> 
+                    <a target="_blank"  class="ansLink" href="https://en.wikipedia.org/wiki/Enigma_machine" data-expanded="false">further information</a>
+                </div>
                 <h2 class="question" id="q1">How does the Enigma Work? </h2>
-                <p class="answer" id="answer1" data-expanded="false">I dont know!</p>
+                <div id="answer1" data-expanded="false">
+                    <p class="answer">I dont know!</p>
+                    <a target="_blank" class="ansLink"  href="https://en.wikipedia.org/wiki/Enigma_machine" data-expanded="false">further information</a>
+                </div>
             </div>
             <div id="footer">
                 <footer>Schlager Andreas</footer>

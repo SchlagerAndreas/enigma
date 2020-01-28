@@ -269,6 +269,12 @@ p.answer{
     font-size: 15px;
     margin: 0px 16px;
 }
+a.ansLink{
+    font-size: 15px;
+    margin: 0px 16px;
+    color: #523614;
+    text-decoration: none;
+}
 
 footer{
     width: 100%;
@@ -287,7 +293,7 @@ footer{
     margin: 0 0;
 }
 
-.undefooter:link{
+a:link{
     color:inherit;
 }
 
