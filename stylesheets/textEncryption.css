@@ -1,0 +1,63 @@
+:root{
+    --text_height: 150px;
+}
+
+div#textEnc{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 0;
+    width: 100%;
+}
+
+/*Input Text field*/
+#inputText{
+    margin: 4px 4px;
+    background-color: #ededed;
+    height: var(--text_height);
+    width: 50%;
+    overflow-y: auto;
+    scrollbar-color: lightsteelblue #786042;
+    resize: none;
+}
+
+
+#outputText{
+    margin: 4px 4px;
+    background-color: #ededed;
+    height: var(--text_height);
+    width: 50%;
+    overflow-y: auto;
+    scrollbar-color: lightsteelblue #786042;
+    resize: none;
+}
+
+button#btnEncrypt{
+    width: 80px;
+    height: 48px;
+    display: inline-block;
+    padding: 3px 5px;
+    font-size: 1em;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: lightsteelblue;
+    background-color: #786042;
+    margin: 4px 4px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 4px grey;
+}
+
+button#btnEncrypt:hover{
+    background-color: #523614;
+    box-shadow: 0 4px black;
+}
+
+button#btnEncrypt:active{
+    transform: translateY(2px);
+}
+

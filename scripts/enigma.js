@@ -26,7 +26,7 @@ class Enigma{
           -nothing is pluged in in the Plugboard
         */
         var that = this;
-        this.inputClass = new Input((input) => {this.encryptLetter(input);});
+        this.inputClass = new Input((input,text) => {return this.encrypt(input,text);});
         this.R1 = new Rotator(0,1);
         this.R2 = new Rotator(1,2);
         this.R3 = new Rotator(2,3);
@@ -36,9 +36,11 @@ class Enigma{
     }
     /**
      * takes a input and encrypt it through the enigma
-     * @param {Number} input character wich will be encrypt 
+     * @param {Number} input character wich will be encrypt
+     * @param {Boolean} text
+     *  @returns {Number}
      */
-    encryptLetter(input){
+    encrypt(input,text){
         if(this.checkRotators){
             var tmp = input;
             tmp = this.goThroughRotator(this.R1,tmp,false);
@@ -52,20 +54,18 @@ class Enigma{
             document.getElementById("rotatorPos1").innerHTML = String.fromCharCode(this.R1.activePosition + 64) + " " + this.R1.activePosition.toString();
             document.getElementById("rotatorPos2").innerHTML = String.fromCharCode(this.R2.activePosition + 64) + " " + this.R2.activePosition.toString();
             document.getElementById("rotatorPos3").innerHTML = String.fromCharCode(this.R3.activePosition + 64) + " " + this.R3.activePosition.toString();
-            this.outputLights.setLightOn(output);
+            if(text){
+                return output;
+            }
+            else{
+                this.outputLights.setLightOn(output);
+            }
             this.inputClass.inputBlocked = false;
         }
         else{
             //error->same rotors used
         }
     };
-    /**
-     * takes a string and encrypts the complete string
-     * @param {String} input 
-     */
-    encryptText(input){
-
-    }
     
     /**
      * takes an input character and let it through a rotator, also rotates the rotator if necessery

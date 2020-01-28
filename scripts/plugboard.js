@@ -23,12 +23,10 @@ class Plugboard{
     addToPlugbrd(input){
        this.plugboard[this.convertInput(input[0])-1] = this.convertInput(input[1])
        this.plugboard[this.convertInput(input[1])-1] = this.convertInput(input[0])
-       console.log(this.plugboard);
     }
     rmvFromPlugbrd(input){
         this.plugboard[this.convertInput(input[0])-1] = 0;
         this.plugboard[this.convertInput(input[1])-1] = 0;
-        console.log(this.plugboard);
 
     }
     goThroughPlugboard(input){
@@ -86,8 +84,8 @@ class Plugboard{
      */
     handleInput(input,backspace){
         if(backspace){
-            if(this.focusOn != 1){
-                if(input.length == 0){
+            if(input.length == 0){
+                if(this.focusOn != 1){
                     this.diableFocus(this.focusOn);
                     this.focusOn--;
                     this.setFocus(this.focusOn);

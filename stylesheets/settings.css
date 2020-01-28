@@ -307,29 +307,4 @@ p.error{
     padding: 0 0;
 }
 
-button#btnEncrypt{
-    width: 80px;
-    height: 24px;
-    display: inline-block;
-    padding: 3px 5px;
-    font-size: 1em;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: lightsteelblue;
-    background-color: #786042;
-    margin: 4px 4px;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 0 4px grey;
-}
 
-button#btnEncrypt:hover{
-    background-color: #523614;
-    box-shadow: 0 4px black;
-}
-
-button#btnEncrypt:active{
-    transform: translateY(2px);
-}
